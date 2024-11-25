@@ -27,6 +27,7 @@ class Ui_Dialog(object):
         self.label.setObjectName("label")
         self.gridLayout.addWidget(self.label, 0, 0, 1, 1)
         self.wiekBar = QtWidgets.QSlider(parent=self.gridLayoutWidget)
+        self.wiekBar.setMaximum(130)
         self.wiekBar.setOrientation(QtCore.Qt.Orientation.Horizontal)
         self.wiekBar.setObjectName("wiekBar")
         self.gridLayout.addWidget(self.wiekBar, 2, 1, 1, 1)
