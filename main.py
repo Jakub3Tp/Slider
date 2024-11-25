@@ -1,16 +1,35 @@
-# This is a sample Python script.
+import sys
 
-# Press ⌃R to execute it or replace it with your code.
-# Press Double ⇧ to search everywhere for classes, files, tool windows, actions, and settings.
+from PyQt6.QtWidgets import QDialog, QApplication
 
-
-def print_hi(name):
-    # Use a breakpoint in the code line below to debug your script.
-    print(f'Hi, {name}')  # Press ⌘F8 to toggle the breakpoint.
+from layout import Ui_Dialog
 
 
-# Press the green button in the gutter to run the script.
+class MyForm(QDialog):
+
+    def __init__(self):
+        super().__init__()
+        self.ui = Ui_Dialog()
+        self.ui.setupUi(self)
+        self.ui.tetnoBar.valueChanged.connect(self.bar_changed)
+        self.ui.wiekBar.valueChanged.connect(self.bar_changed)
+        self.ui.cholBar.valueChanged.connect(self.bar_changed)
+        self.ui.tetnoBox.valueChanged.connect(self.box_changed)
+        self.ui.wiekBox.valueChanged.connect(self.box_changed)
+        self.ui.cholBox.valueChanged.connect(self.box_changed)
+        self.show()
+
+    def bar_changed(self):
+        self.ui.tetnoBox.setValue(self.ui.tetnoBar.value())
+        self.ui.cholBox.setValue(self.ui.cholBar.value())
+        self.ui.wiekBox.setValue(self.ui.wiekBar.value())
+
+    def box_changed(self):
+        self.ui.tetnoBar.setValue(self.ui.tetnoBox.value())
+        self.ui.cholBar.setValue(self.ui.cholBox.value())
+        self.ui.wiekBar.setValue(self.ui.wiekBox.value())
+
 if __name__ == '__main__':
-    print_hi('PyCharm')
-
-# See PyCharm help at https://www.jetbrains.com/help/pycharm/
+    app = QApplication(sys.argv)
+    window = MyForm()
+    sys.exit(app.exec())
